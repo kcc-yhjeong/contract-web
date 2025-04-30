@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreVerticalIcon } from 'lucide-react';
@@ -25,20 +25,15 @@ interface TemplateItem {
 }
 
 export function TemplateList() {
-    // const [page, setPage] = useState(0);
-    // const [name, setName] = useState('');
     const [searchParams, setSearchParams] = useState<TemplateSearchParams>({
         page: 0,
         name: '',
     });
 
-    const { data, isLoading, isError, refetch } = useTemplateList(searchParams);
-
-    //TODO. refetch로 할지 정해야함
-    // useEffect()
+    const { data, refetch } = useTemplateList(searchParams);
 
     const handleSearch = () => {
-        setSearchParams(prev => ({ ...prev, page: 0 }));
+        refetch();
     };
 
     const columns = useMemo<ColumnDef<TemplateItem>[]>(
@@ -88,17 +83,14 @@ export function TemplateList() {
         []
     );
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError || !data) return <div>Error fetching templates.</div>;
-
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2">
                 <input
                     type="text"
                     placeholder="템플릿명 검색"
-                    value={name}
-                    // onChange={e => setName(e.target.value)}
+                    value={searchParams.name}
+                    onChange={e => setSearchParams(prev => ({ ...prev, name: e.target.value }))}
                     onKeyDown={e => {
                         if (e.key === 'Enter') {
                             handleSearch();
@@ -109,11 +101,11 @@ export function TemplateList() {
                 <Button onClick={handleSearch}>검색</Button>
             </div>
             <div className="w-full overflow-x-auto">
-                <DataTable columns={columns} data={data.content} />
+                <DataTable columns={columns} data={data?.content ?? []} />
             </div>
             <DataTablePagination
-                pageNumber={searchParams.page}
-                pageCount={data.page.totalPages}
+                pageNumber={data?.page?.number ?? 0}
+                pageCount={data?.page?.totalPages ?? 0}
                 onPageChange={page => setSearchParams(prev => ({ ...prev, page }))}
             />
         </div>

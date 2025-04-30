@@ -7,8 +7,7 @@ import { TemplateSearchParams } from './types';
 
 export const useTemplateList = ({ page, name }: TemplateSearchParams) => {
     return useQuery({
-        queryKey: templateQueryKeys.list(page, name),
+        queryKey: templateQueryKeys.list,
         queryFn: () => getTemplateList({ page, name }),
-        // enabled: false,
     });
 };
