@@ -14,7 +14,7 @@ export const useGetTemplateList = ({ page = 0, name = '' }: Partial<TemplateSear
         queryKey: TEMPLATE_QUERY_KEYS.list(page, name),
         queryFn: () => getTemplateList({ page, name }),
         placeholderData: keepPreviousData,
-        enabled: true,
+        enabled: false,
     });
 };
 
@@ -36,7 +36,7 @@ export const useTrashTemplate = (id: string, searchParams: TemplateSearchParams)
     return useMutation({
         mutationFn: () => trashTemplate(id),
         onSuccess: () => {
-            queryClient.invalidateQueries({
+            queryClient.refetchQueries({
                 queryKey: TEMPLATE_QUERY_KEYS.list(searchParams.page, searchParams.name),
             });
         },

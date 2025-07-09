@@ -7,7 +7,6 @@ export const useSearch = <T extends object, R = unknown>(
 ) => {
     const [filters, setFilters] = useState<T>({ page: 0 } as T);
     const queryResult = queryHook(filters);
-
     useEffect(() => {
         queryResult.refetch();
     }, [filters]);
