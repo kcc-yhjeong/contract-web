@@ -6,6 +6,11 @@ import containerQueries from '@tailwindcss/container-queries';
 export default {
     darkMode: ['class'],
     content: ['./src/**/*.{ts,tsx}', './src/**/*.css', '*.{js,ts,jsx,tsx,mdx}'],
+    safelist: [
+        { pattern: /(text|bg|border(-(t|b|r|l))?)-signer-(1[0]?|[1-9])/ },
+        { pattern: /z-([1-9]|[1-9][0-9]|100)/ },
+        { pattern: /col-span-([1-5])/ },
+    ],
     theme: {
         extend: {
             fontFamily: {
@@ -63,6 +68,45 @@ export default {
                     border: 'hsl(var(--sidebar-border))',
                     ring: 'hsl(var(--sidebar-ring))',
                 },
+                editor: {
+                    header: '#333333',
+                    footer: '#333333',
+                    sidebar: '#f0f2f4',
+                    main: '#464646',
+                },
+                signer: {
+                    required: '#d01b40',
+                    normal: '#ffeaab',
+                    1: '#ff6666',
+                    2: '#6699ff',
+                    3: '#008080',
+                    4: '#9933cc',
+                    5: '#ffb266',
+                    6: '#cc99ff',
+                    7: '#ffb6c1',
+                    8: '#add8e6',
+                    9: '#4682b4',
+                    10: '#33cc99',
+                },
+            },
+            zIndex: {
+                10: '10',
+                20: '20',
+                30: '30',
+                40: '40',
+                50: '50',
+                60: '60',
+                70: '70',
+                80: '80',
+                90: '90',
+                100: '100',
+            },
+            gridColumn: {
+                'span-1': 'span 1 / span 1',
+                'span-2': 'span 2 / span 2',
+                'span-3': 'span 3 / span 3',
+                'span-4': 'span 4 / span 4',
+                'span-5': 'span 5 / span 5',
             },
             borderRadius: {
                 xl: 'calc(var(--radius) + 4px)',

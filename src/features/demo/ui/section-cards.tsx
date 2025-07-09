@@ -1,7 +1,6 @@
 import { TrendingDownIcon, TrendingUpIcon } from 'lucide-react';
 
-import { Badge } from '@/shared/ui/data-display/badge';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui/layout/card';
+import { Badge, Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui';
 
 export function SectionCards() {
     return (

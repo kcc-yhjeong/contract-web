@@ -1,23 +1,25 @@
 import { ReactNode } from 'react';
 
-import { ThemeProvider } from '../shared/ui/theme/theme-provider';
-import { QueryProvider } from './providers/query-provider';
-import { RouterProvider } from './providers/router-provider';
-import { StoreProvider } from './providers/store-provider';
+import { useLoading } from '@/shared/lib';
+import { LoadingSpinner } from '@/shared/ui';
 
+import { QueryProvider } from './providers/query-provider';
+import { ThemeProvider } from './providers/theme-provider';
 interface AppProviderProps {
     children: ReactNode;
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
+    const { isLoading } = useLoading();
     return (
         // <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-            <QueryProvider>
-                <StoreProvider>
-                    <RouterProvider>{children}</RouterProvider>
-                </StoreProvider>
-            </QueryProvider>
+            {isLoading && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-30">
+                    <LoadingSpinner />
+                </div>
+            )}
+            <QueryProvider>{children}</QueryProvider>
         </ThemeProvider>
     );
 };

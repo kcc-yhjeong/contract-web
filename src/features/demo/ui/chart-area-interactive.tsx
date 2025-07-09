@@ -3,21 +3,25 @@ import * as React from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
 import { useIsMobile } from '@/shared/lib/hooks/use-mobile';
-import { ToggleGroup, ToggleGroupItem } from '@/shared/ui/button/toggle-group';
 import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
     type ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from '@/shared/ui/data-display/chart';
-import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/shared/ui/form/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/layout/card';
+    ToggleGroup,
+    ToggleGroupItem,
+} from '@/shared/ui';
+
 const chartData = [
     { date: '2024-04-01', desktop: 222, mobile: 150 },
     { date: '2024-04-02', desktop: 97, mobile: 180 },

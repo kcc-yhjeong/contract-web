@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { ToastActionElement, ToastProps } from '@/shared/ui/toast';
+import type { ToastActionElement, ToastProps } from '@/shared/ui/base/toast';
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
@@ -137,7 +137,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, 'id'>;
 
-function toast({ ...props }: Toast) {
+const toast = ({ ...props }: Toast) => {
     const id = genId();
 
     const update = (props: ToasterToast) =>
@@ -164,9 +164,9 @@ function toast({ ...props }: Toast) {
         dismiss,
         update,
     };
-}
+};
 
-function useToast() {
+const useToast = () => {
     const [state, setState] = React.useState<State>(memoryState);
 
     React.useEffect(() => {
@@ -184,6 +184,6 @@ function useToast() {
         toast,
         dismiss: (toastId?: string) => dispatch({ type: 'DISMISS_TOAST', toastId }),
     };
-}
+};
 
 export { toast, useToast };

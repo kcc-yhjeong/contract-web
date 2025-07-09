@@ -10,9 +10,9 @@ import { router } from './app/routes';
 import './globals.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <AppProvider>
-            <RouterProvider router={router} />
-        </AppProvider>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <AppProvider>
+        <RouterProvider router={router} />
+    </AppProvider>
+    // </React.StrictMode>
 );

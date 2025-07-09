@@ -52,42 +52,28 @@ import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 import { z } from 'zod';
 
 import { useIsMobile } from '@/shared/lib/hooks/use-mobile';
-import { Button } from '@/shared/ui/button';
-import { Badge } from '@/shared/ui/data-display/badge';
 import {
+    Badge,
+    Button,
     type ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from '@/shared/ui/data-display/chart';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/shared/ui/data-display/table';
-import {
+    Checkbox,
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@/shared/ui/dropdown/dropdown-menu';
-import { Checkbox } from '@/shared/ui/form/checkbox';
-import { Input } from '@/shared/ui/form/input';
-import { Label } from '@/shared/ui/form/label';
-import {
+    Input,
+    Label,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/shared/ui/form/select';
-import { Separator } from '@/shared/ui/layout/separator';
-import {
+    Separator,
     Sheet,
     SheetClose,
     SheetContent,
@@ -96,8 +82,17 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from '@/shared/ui/layout/sheet';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/navigation/tabs';
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from '@/shared/ui';
 
 export const schema = z.object({
     id: z.number(),
@@ -197,84 +192,6 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
             </Badge>
         ),
     },
-    // {
-    //     accessorKey: 'target',
-    //     header: () => <div className="w-full text-right">Target</div>,
-    //     cell: ({ row }) => (
-    //         <form
-    //             onSubmit={e => {
-    //                 e.preventDefault();
-    //                 toast.promise(new Promise(resolve => setTimeout(resolve, 1000)), {
-    //                     loading: `Saving ${row.original.header}`,
-    //                     success: 'Done',
-    //                     error: 'Error',
-    //                 });
-    //             }}
-    //         >
-    //             <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-    //                 Target
-    //             </Label>
-    //             <Input
-    //                 className="h-8 w-16 border-transparent bg-transparent text-right shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background"
-    //                 defaultValue={row.original.target}
-    //                 id={`${row.original.id}-target`}
-    //             />
-    //         </form>
-    //     ),
-    // },
-    // {
-    //     accessorKey: 'limit',
-    //     header: () => <div className="w-full text-right">Limit</div>,
-    //     cell: ({ row }) => (
-    //         <form
-    //             onSubmit={e => {
-    //                 e.preventDefault();
-    //                 toast.promise(new Promise(resolve => setTimeout(resolve, 1000)), {
-    //                     loading: `Saving ${row.original.header}`,
-    //                     success: 'Done',
-    //                     error: 'Error',
-    //                 });
-    //             }}
-    //         >
-    //             <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
-    //                 Limit
-    //             </Label>
-    //             <Input
-    //                 className="h-8 w-16 border-transparent bg-transparent text-right shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background"
-    //                 defaultValue={row.original.limit}
-    //                 id={`${row.original.id}-limit`}
-    //             />
-    //         </form>
-    //     ),
-    // },
-    // {
-    //     accessorKey: 'reviewer',
-    //     header: 'Reviewer',
-    //     cell: ({ row }) => {
-    //         const isAssigned = row.original.reviewer !== 'Assign reviewer';
-
-    //         if (isAssigned) {
-    //             return row.original.reviewer;
-    //         }
-
-    //         return (
-    //             <>
-    //                 <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-    //                     Reviewer
-    //                 </Label>
-    //                 <Select>
-    //                     <SelectTrigger className="h-8 w-40" id={`${row.original.id}-reviewer`}>
-    //                         <SelectValue placeholder="Assign reviewer" />
-    //                     </SelectTrigger>
-    //                     <SelectContent align="end">
-    //                         <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-    //                         <SelectItem value="Jamik Tashpulatov">Jamik Tashpulatov</SelectItem>
-    //                     </SelectContent>
-    //                 </Select>
-    //             </>
-    //         );
-    //     },
-    // },
     {
         id: 'actions',
         cell: () => (
